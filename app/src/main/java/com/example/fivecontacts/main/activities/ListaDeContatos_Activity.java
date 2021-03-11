@@ -247,25 +247,21 @@ public class ListaDeContatos_Activity extends AppCompatActivity implements UIEdu
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                                            int[] grantResults) {
+                                           int[] grantResults) {
         switch (requestCode) {
             case 2222:
-               if(grantResults[0]==PackageManager.PERMISSION_GRANTED){
-                   Toast.makeText(this, "VALEU", Toast.LENGTH_LONG).show();
-                   Uri uri = Uri.parse(numeroCall);
-                   //   Intent itLigar = new Intent(Intent.ACTION_DIAL, uri);
-                   Intent itLigar = new Intent(Intent.ACTION_CALL, uri);
-                   startActivity(itLigar);
+                if(grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                    Toast.makeText(this, "VALEU", Toast.LENGTH_LONG).show();
+                    Uri uri = Uri.parse(numeroCall);
+                    Intent itLigar = new Intent(Intent.ACTION_CALL, uri);
+                    startActivity(itLigar);
 
-               }else{
-                   Toast.makeText(this, "SEU FELA!", Toast.LENGTH_LONG).show();
-
-                   String mensagem= "Seu aplicativo pode ligar diretamente, mas sem permissão não funciona. Se você marcou não perguntar mais, você deve ir na tela de configurações para mudar a instalação ou reinstalar o aplicativo  ";
-                   String titulo= "Porque precisamos telefonar?";
-                   UIEducacionalPermissao mensagemPermisso = new UIEducacionalPermissao(mensagem,titulo,2);
-                   mensagemPermisso.onAttach((Context)this);
-                   mensagemPermisso.show(getSupportFragmentManager(), "segundavez");
-               }
+                }else{
+                    Toast.makeText(this, "SEU FELA!", Toast.LENGTH_LONG).show();
+                    Uri uri = Uri.parse(numeroCall);
+                    Intent itDiscagem = new Intent(Intent.ACTION_DIAL, uri);
+                    startActivity(itDiscagem);
+                }
                 break;
         }
     }
